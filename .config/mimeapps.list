@@ -1,0 +1,14 @@
+[Added Associations]
+image/png=ristretto.desktop;
+application/x-shellscript=mousepad.desktop;
+text/x-matlab=mousepad.desktop;
+text/plain=mousepad.desktop;
+application/vnd.debian.binary-package=gnome-software-local-file.desktop;
+application/pdf=atril.desktop;
+application/msword=libreoffice-writer.desktop;
+video/x-matroska=org.xfce.Parole.desktop;
+text/html=exo-web-browser.desktop;
+image/gif=ristretto.desktop;
+video/mp4=org.xfce.Parole.desktop;
+text/markdown=mousepad.desktop;
+font/ttf=org.gnome.font-viewer.desktop;
