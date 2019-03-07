@@ -110,12 +110,16 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # setting workspace variables
-set $workspace1 "1:  Terminals"
-set $workspace2 "2:  Terminals"
-set $workspace3 "3:  Firefox"
-set $workspace4 "4:  Firefox"
-set $workspace5 "5:  Code"
-
+set $workspace1 "1:  "
+set $workspace2 "2:  "
+set $workspace3 "3:  "
+set $workspace4 "4:  "
+set $workspace5 "5:  "
+set $workspace6 "6:  "
+set $workspace7 "7:  "
+set $workspace8 "8:  "
+set $workspace9 "9:  "
+set $workspace10 "10.  "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -123,11 +127,11 @@ bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -135,11 +139,11 @@ bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -177,6 +181,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 set $bg-color           #262626
+set $bg-active          #404040
+set $act-bg             #666666
 set $separator          #999999
 set $text-color         #ffffff
 set $inactive-bar-text  #888888
@@ -193,8 +199,8 @@ bar {
                 separator $separator
 
                 # <color class>         <border>        <background>    <text>
-                focused_workspace       $bg-color       $bg-color       $text-color
-                active_workspace        $bg-color       $bg-color       $text-color
+                focused_workspace       $act-bg         $bg-active      $text-color
+                active_workspace        $act-bg         $bg-active      $text-color
                 inactive_workspace      $bg-color       $bg-color       $inactive-bar-text
                 urgent_workspace        $urgent-color   $bg-color       $urgent-color
         }
@@ -233,38 +239,44 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% #
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-#bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 #decrease brightness
-#bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 #increase brightness
+# Light: https://github.com/haikarainen/light
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10 #decrease brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10 #increase brightness
 
 # Screenshot
 bindsym --release Print exec scrot 'Screenshot_%Y-%m-%d_%H-%M-%S.png' --quality 100 --exec 'mv $f ~/Pictures'
 
 #i3lock
-bindsym $mod+x exec i3lock
+bindsym $mod+x exec i3lock -efc 0f0f00
 
 # default windows
+# assign [class="Xfce4-terminal"] $workspace1
+# assign [class="Firefox"] $workspace3
 assign [class="Code"] $workspace5
-assign [class="Firefox"] $workspace3
-assign [class="Xfce4-terminal"] $workspace1
+assign [class="Gedit"] $workspace5
+assign [class="Thunar"] $workspace6
+assign [class="Atril"] $workspace7
+assign [class="Parole"] $workspace10
 
 # kill on scrollbar click on titlebar
 bindsym --release button2 kill
 
 # Press $mod+o followed by either f, t, etc to launch firefox, terminal, etc or Escape or Return to the default mode
-set $shortcuts Lanuch: [f]irefox [t]erminal [c]ode
+set $shortcuts Lanuch: [f]irefox [t]erminal [c]ode [r]thunar
 bindsym $mod+o mode "$shortcuts"
 mode "$shortcuts" {
     bindsym f exec firefox
     bindsym t exec i3-sensible-terminal
     bindsym c exec code
+    bindsym r exec thunar
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
 
 # default border and default floating border
-#default_border none
-#default_floating_border none
+# default_border none
+default_floating_border none
 
 # hide container borders adjacent to the screen edges and indicator for new window
 hide_edge_borders both
