@@ -91,6 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias cava='bash ~/.config/cava-0.6.1/cava' # https://github.com/karlstav/cava
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -159,3 +160,6 @@ export SCM_CHECK=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+
+alias jn="jupyter-notebook & disown"
