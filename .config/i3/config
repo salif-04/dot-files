@@ -257,18 +257,28 @@ assign [class="Gedit"] $workspace5
 assign [class="Thunar"] $workspace6
 assign [class="Atril"] $workspace7
 assign [class="Parole"] $workspace10
+assign [class="TelegramDesktop"] $workspace10
 
 # kill on scrollbar click on titlebar
 bindsym --release button2 kill
 
 # Press $mod+o followed by either f, t, etc to launch firefox, terminal, etc or Escape or Return to the default mode
-set $shortcuts Lanuch: [f]irefox [t]erminal [c]ode [r]thunar
+set $shortcuts Lanuch: [t]elegram [c]ode [r]thunar
 bindsym $mod+o mode "$shortcuts"
 mode "$shortcuts" {
-    bindsym f exec firefox
-    bindsym t exec i3-sensible-terminal
+    bindsym t exec telegram-desktop
     bindsym c exec code
     bindsym r exec thunar
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+set $browsers Lanuch: [c]hrome [f]firefox
+bindsym $mod+b mode "$browsers"
+mode "$browsers" {
+    bindsym f exec firefox
+    bindsym c exec chromium-browser
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
